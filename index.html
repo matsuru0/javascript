@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        .btn{
+            color:white;
+            padding:10px 12px 10px 12px;
+            font-family:sans-serif;
+            font-size:10px;
+            border:none;
+            background-color: black;
+        }
+        .btn:hover{
+            background-color: greenyellow;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="authentication">
+    <form action="post"  >
+        <table>
+            <tr>
+                <td>first name</td>
+                <td><input type="text" id="fname"  maxlength="15" required onkeyup="validatename()"pattern="^\S+$" ></td>
+                <td ><p id="alname"></p></td>
+            </tr>
+            <tr>
+                <td>ensert a password</td>
+                <td><input type="password" id="pass" required maxlength="50" placeholder="your password" required pattern="^\S+$" onkeyup="validatepassword()"></td>
+                <td><p id="passaler"></p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input class="btn" type="button" id="submit" value="submit" required onclick="validateForm()" ></td>
+            </tr>
+            <tr>
+                <td>first number</td>
+                <td><input  type="number" id="firstnumber"  ></td>
+            </tr>
+            <tr>
+                <td>seconde number</td>
+                <td><input  type="number" id="secondenumber"  ></td>
+            </tr>
+            <tr>
+                <td  >chose : </td>
+                <td  colspan="1"><input  type="button" id="plus" value="+" onclick="plusplus(this.form)">
+                    <input  type="button" id="multiply" value="*" onclick="multyply(this.form)">
+                    <input  type="button" id="devise" value="/" onclick="devisee(this.form)">
+                </td>
+                
+                
+            </tr>
+            <tr>
+                
+            </tr>
+        </table>
+        
+        
+    </form>
+    </div>
+    <script>
+        $blue = $('<div>').css({
+    background: 'blue',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: '0',
+    display: 'none'
+}).appendTo('.authentication').slideDown('slow', function(){
+    $('.form-inputs').fadeIn();
+});
+        function devisee(form){
+            let multiply11 =  multiply.value;
+            let plus11 =  plus.value;
+            let f = parseInt(firstnumber.value);
+            let s = parseInt(secondenumber.value);
+            alert(f/s);
+        }
+        function multyply(form){
+            let multiply11 =  multiply.value;
+            let plus11 =  plus.value;
+            let f = parseInt(firstnumber.value);
+            let s = parseInt(secondenumber.value);
+            alert(f*s);
+        }
+        function plusplus(form){
+            let multiply11 =  multiply.value;
+            let plus11 =  plus.value;
+            let f = parseInt(firstnumber.value);
+            let s = parseInt(secondenumber.value);
+            alert(f+s);
+            
+            
+        }
+        function error(message,id,place){
+            document.getElementById(place).style.border = "2px red solid";
+            document.getElementById(id).innerHTML =message;
+            document.getElementById(id).style.color = "red";
+        }
+        function succed(message,id,place){
+            document.getElementById(place).style.border = "2px #67eb34 solid";
+            document.getElementById(id).innerHTML =message;
+            document.getElementById(id).style.color = "#67eb34";
+        }
+        function validatepassword(){
+            let password = document.getElementById('pass').value;
+            if(password.length <= 6){
+                let alertpassword = "please enter a password bigger then 6 number";
+                error(alertpassword,"passaler",'pass');
+                
+                return false;
+            }
+            else{
+                let alertpassword = "valid"
+                succed(alertpassword,"passaler",'pass');
+                return true;
+            }
+        }
+        function validatename(){
+            let username = document.getElementById('fname').value;
+            if(username.match(/\s/g)){
+                let alertname = "no spaces";
+                error(alertname,"alname",'fname');
+                username.value=t.value.replace(/\s/g,'');
+            }
+            if (username.length <= 0  ){
+                
+                let alertname = "please enter a username";
+                error(alertname,"alname",'fname');
+                return false;
+            }
+            /*if(username= null ){
+                let alertname = "dont enter this ysntax";
+                document.getElementById("alname").innerHTML =alertname;
+                document.getElementById("alname").style.color = "red";
+                return false;
+            }*/
+            else{
+                let alertname = "valid";
+                succed(alertname,"alname",'fname');
+                return true;
+            }
+            
+            
+            
+        }
+        function validateForm(form){
+            if(!validatepassword() | !validatename()){
+                alert('please fill the blank');
+                return false;
+            }
+            else{
+                alert('you are registred');
+                window.open('home.html','_blank');
+            }
+        }
+    </script>
+</body>
+</html>
