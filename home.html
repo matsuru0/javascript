@@ -7,6 +7,82 @@
 </head>
 <body>
     <H1>WELCOME TO HOME</H1>
-    <script></script>
+    <form action="post">
+        <table>
+            <tr>
+                <td>message</td>
+                <td> <textarea name="message" id="commenta" cols="35" rows="4" maxlength="200" required minlength="5" onkeyup="messagevalidate()"></textarea>
+                    <p ><input type="text" maxlength="6" id="username" required></p>
+                <p id="requiredmessage"> </p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" value="send" id="sendbtn" onclick="validate()"></td>
+            </tr>
+            <tr>
+                
+                <td  id="yourcomment"></td>
+            </tr>
+            <tr>
+                
+                <td>
+
+                    <div id="div1"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function messagevalidate(){
+            let comment = document.getElementById('commenta').value;
+            let needed = comment.length  ;
+            
+            document.getElementById('requiredmessage').innerHTML ='required : 5 your :' + needed;
+            if(comment.length < 5){
+                document.getElementById('requiredmessage').style.color = 'red';
+                return false;
+            }
+            else{
+                
+                document.getElementById('requiredmessage').style.color = '#67eb34';
+                return true;
+            }
+        }
+        function validate(){
+            let comment = document.getElementById('commenta').value;
+            let usernameee = document.getElementById('username').value;
+            if(!messagevalidate()){
+                console.log('falssssssssse');
+                alert('please fill the comment');
+                return false;
+            }
+            var para = document.createElement("p");
+            var node = document.createTextNode('user :' + usernameee);
+            para.appendChild(node);
+            var element = document.getElementById("div1");
+            var child = document.getElementById("p1");
+            element.insertBefore(para, child); 
+            var para = document.createElement("p");
+            var node = document.createTextNode(comment);
+            para.appendChild(node);
+            var element = document.getElementById("div1");
+            var child = document.getElementById("p1");
+            element.insertBefore(para, child); 
+            
+            /**document.getElementById('yourcomment').style.border = "1px red solid";
+            document.getElementById('yourcomment').innerHTML = document.getElementById('commenta').value;*/
+            
+            
+        }
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+        document.write(today);
+    </script>
+
 </body>
 </html>
